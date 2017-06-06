@@ -11,6 +11,16 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
+import {AngularFireModule} from "angularfire2";
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyADq7Yy283TsNxxs8x-hXfD1k3lyeJQDZI",
+  authDomain: "dawg-chat.firebaseapp.com",
+  databaseURL: "https://dawg-chat.firebaseio.com",
+  projectId: "dawg-chat",
+  storageBucket: "dawg-chat.appspot.com",
+  messagingSenderId: "959884748484"
+};
 
 @NgModule({
   declarations: [
@@ -23,7 +33,8 @@ import {LoginPage} from "../pages/login/login";
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
