@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {validateEmail} from "../validators/email";
+import {AuthProvider} from "../../providers/auth-provider";
+import {TabsPage} from "../tabs/tabs";
 
 /**
  * Generated class for the Login page.
@@ -16,11 +18,7 @@ import {validateEmail} from "../validators/email";
 export class LoginPage {
   loginForm: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Login');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
   }
 
   ngOnInit() {
@@ -32,11 +30,26 @@ export class LoginPage {
 
 
   signIn() {
-
+    this.authProvider.signIn(this.loginForm.value).then(loginResult => {
+      console.log('successfully signed in. loginResult: ' + loginResult);
+      this.navigateToMainPage();
+    }, error => {
+      console.log('error signing in: ' + error);
+    })
   }
 
   createAccount() {
     let credentials = this.loginForm.value;
+    this.authProvider.createAccount(credentials).then(user => {
+      console.log('successfully created account! user: ' + user);
+      this.navigateToMainPage();
+    }, error => {
+      console.log('error creating account! error: ' + error);
+    });
+  }
 
+
+  navigateToMainPage() {
+    this.navCtrl.push(TabsPage);
   }
 }

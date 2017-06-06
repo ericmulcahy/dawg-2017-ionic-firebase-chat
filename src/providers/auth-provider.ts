@@ -15,11 +15,14 @@ import * as firebase from 'firebase/app';
 */
 @Injectable()
 export class AuthProvider {
-
   user: Observable<firebase.User>;
 
-  constructor(public angularFireAuth: AngularFireAuth) {
+  constructor(private angularFireAuth: AngularFireAuth) {
     this.user = angularFireAuth.authState;
+
+    this.user.subscribe(data => {
+      console.log('user data changed: ' + JSON.stringify(data));
+    });
   }
 
   isAlreadyLoggedIn() {
@@ -44,7 +47,7 @@ export class AuthProvider {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
   }
 
-  logOut() {
+  signOut() {
     this.angularFireAuth.auth.signOut();
   }
 }

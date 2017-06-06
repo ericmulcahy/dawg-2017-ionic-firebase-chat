@@ -8,10 +8,14 @@
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+      <div> User: {{ (user | async) | json }} </div>
+      <div> Email: {{ (user.email | async) | json }} </div>
+    </ion-item>
+    <ion-item>
+      <button ion-button full clear favorite (click)="signOut()">
+        Sign Out
+      </button>
     </ion-item>
   </ion-list>
 </ion-content>
