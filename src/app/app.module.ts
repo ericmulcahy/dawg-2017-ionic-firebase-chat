@@ -14,6 +14,7 @@ import {LoginPage} from "../pages/login/login";
 import {AngularFireModule} from "angularfire2";
 import {AuthProvider} from "../providers/auth-provider";
 import {AngularFireAuthModule} from "angularfire2/auth";
+import {IonicStorageModule} from "@ionic/storage";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyADq7Yy283TsNxxs8x-hXfD1k3lyeJQDZI",
@@ -37,6 +38,7 @@ export const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
+    IonicStorageModule.forRoot(MyApp),
     AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
