@@ -9,8 +9,8 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <div> User: {{ (user | async) | json }} </div>
-      <div> Email: {{ (user.email | async) | json }} </div>
+      <div> User: {{user | json }} </div>
+      <div *ngIf="user"> Email: {{user.email}} </div>
     </ion-item>
     <ion-item>
       <button ion-button full clear favorite (click)="signOut()">

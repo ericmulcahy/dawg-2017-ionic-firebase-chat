@@ -39,13 +39,28 @@ export class AuthProvider {
     });
   }
 
-  signIn(credentials) {
-    return this.angularFireAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+  signIn(credentials): firebase.Promise < any > {
+    return this.angularFireAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
+      .then(data => {
+        // this.storage.set('uid', data.uid);
+      });
   }
 
   createAccount(credentials) {
-    return this.angularFireAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+    return this.angularFireAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+      .then(data => {
+        // this.storage.set('uid', data.uid);
+        // this.createUserRecord(credentials.email, data.uid);
+      });
   }
+
+  // Create User in Firebase
+  // createUserRecord(email: string, uid: any) {
+  //   let currentUserRef = this.angularFireDatabase.database.ref(`/users/${uid}`);
+  //   currentUserRef.set({email: email});
+  //   console.log(currentUserRef);
+  // }
+
 
   signOut() {
     this.angularFireAuth.auth.signOut();
