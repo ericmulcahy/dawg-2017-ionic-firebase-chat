@@ -4,16 +4,16 @@ import {AuthProvider} from "../../providers/auth-provider";
 import {LoginPage} from "../login/login";
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-account',
+  templateUrl: 'account.html'
 })
-export class ContactPage {
+export class AccountPage {
   user: any;
   constructor(public navCtrl: NavController, private authProvider: AuthProvider) {
     authProvider.user.subscribe((data) => {
       this.user = data;
     });
-    console.log('contact page user set to ', this.user);
+    console.log('account page user set to ', this.user);
   }
 
   signOut() {

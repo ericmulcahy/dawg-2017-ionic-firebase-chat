@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import {UsersPage} from '../pages/users/users';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -17,6 +15,8 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 import {IonicStorageModule} from "@ionic/storage";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {UserProvider} from "../providers/user-provider";
+import {AccountPage} from "../pages/account/account";
+import {ChatPage} from "../pages/chat/chat";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyADq7Yy283TsNxxs8x-hXfD1k3lyeJQDZI",
@@ -30,11 +30,11 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    AccountPage,
     UsersPage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -47,8 +47,8 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ChatPage,
+    AccountPage,
     UsersPage,
     TabsPage,
     LoginPage
