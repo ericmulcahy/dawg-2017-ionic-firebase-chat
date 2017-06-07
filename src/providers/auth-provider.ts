@@ -27,6 +27,10 @@ export class AuthProvider {
     });
   }
 
+  getUserId(): Promise<any> {
+    return this.storage.get('uid');
+  }
+
   isAlreadyLoggedIn() {
     return new Promise(resolve => {
       this.angularFireAuth.authState.subscribe(user => {

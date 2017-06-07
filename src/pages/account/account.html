@@ -9,9 +9,24 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <div> User: {{user | json }} </div>
-      <div *ngIf="user"> Email: {{user.email}} </div>
+      <div> User: {{user | json }}</div>
+      <div *ngIf="user"> Email: {{user.email}}</div>
     </ion-item>
+
+
+    <ion-item>
+      <img *ngIf="user.picture" src="{{user.picture}}"/>
+      <div *ngIf="!user.picture">
+        No Picture
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button full clear favorite (click)="changePicture()">
+        Change Picture
+      </button>
+    </ion-item>
+
     <ion-item>
       <button ion-button full clear favorite (click)="signOut()">
         Sign Out

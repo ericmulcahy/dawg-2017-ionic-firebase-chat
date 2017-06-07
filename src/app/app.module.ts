@@ -17,6 +17,7 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
 import {UserProvider} from "../providers/user-provider";
 import {AccountPage} from "../pages/account/account";
 import {ChatPage} from "../pages/chat/chat";
+import {Camera} from "@ionic-native/camera";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyADq7Yy283TsNxxs8x-hXfD1k3lyeJQDZI",
@@ -58,7 +59,8 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    UserProvider
+    UserProvider,
+    Camera
   ]
 })
 export class AppModule {}
