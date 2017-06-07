@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AngularFireDatabase} from "angularfire2/database";
 import {AuthProvider} from "./auth-provider";
-import {Camera} from "@ionic-native/camera";
+import {Camera, CameraOptions} from "@ionic-native/camera";
 
 /*
   Generated class for the UserProvider provider.
@@ -32,13 +32,13 @@ export class UserProvider {
 
   getPicture() {
     return new Promise((resolve, reject) => {
-      // let options = {
-      //   quality: 100,
-      //   sourceType: this.camera.PictureSourceType.CAMERA,
-      //   correctOrientation: true,
-      //   destinationType: this.camera.DestinationType.DATA_URL,
-      // };
-      this.camera.getPicture().then((imageData) => {
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      };
+      this.camera.getPicture(options).then((imageData) => {
         let base64Picture = "data:image/jpeg;base64," + imageData;
         resolve(base64Picture);
       }, (error) => {
