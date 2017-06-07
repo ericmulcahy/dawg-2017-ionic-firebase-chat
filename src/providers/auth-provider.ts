@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 // todo: what does this comment mean? (from angularfire2 docs https://github.com/angular/angularfire2/blob/master/docs/version-4-upgrade.md)
 // Do not import from 'firebase' as you'd lose the tree shaking benefits
 import * as firebase from 'firebase/app';
+import {AngularFireDatabase} from "angularfire2/database";
 
 /*
   Generated class for the AuthProvider provider.
@@ -18,7 +19,7 @@ import * as firebase from 'firebase/app';
 export class AuthProvider {
   user: Observable<firebase.User>;
 
-  constructor(private angularFireAuth: AngularFireAuth, private storage: Storage) {
+  constructor(private angularFireAuth: AngularFireAuth, private angularFireDatabase: AngularFireDatabase, private storage: Storage) {
     this.user = angularFireAuth.authState;
 
     this.user.subscribe(data => {
@@ -51,17 +52,15 @@ export class AuthProvider {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then(data => {
         this.storage.set('uid', data.uid);
-        // this.createUserRecord(credentials.email, data.uid);
+        this.createUserRecord(credentials.email, data.uid);
       });
   }
 
-  // Create User in Firebase
-  // createUserRecord(email: string, uid: any) {
-  //   let currentUserRef = this.angularFireDatabase.database.ref(`/users/${uid}`);
-  //   currentUserRef.set({email: email});
-  //   console.log(currentUserRef);
-  // }
-
+  createUserRecord(email: string, uid: any) {
+    let currentUserRef = this.angularFireDatabase.database.ref(`/users/${uid}`);
+    currentUserRef.set({email: email});
+    console.log(currentUserRef);
+  }
 
   signOut() {
     this.angularFireAuth.auth.signOut();

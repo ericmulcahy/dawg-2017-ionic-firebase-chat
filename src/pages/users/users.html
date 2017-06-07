@@ -5,9 +5,10 @@
 </ion-header>
 
 <ion-content padding>
+  <h2>User List</h2>
   <ion-list>
-    <ion-item>
-      Home
+    <ion-item *ngFor="let user of users | async">
+      Chat with {{user.email}}
     </ion-item>
   </ion-list>
 </ion-content>

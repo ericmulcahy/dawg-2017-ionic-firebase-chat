@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
+import {UsersPage} from '../pages/users/users';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -15,6 +15,8 @@ import {AngularFireModule} from "angularfire2";
 import {AuthProvider} from "../providers/auth-provider";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {IonicStorageModule} from "@ionic/storage";
+import {AngularFireDatabaseModule} from "angularfire2/database";
+import {UserProvider} from "../providers/user-provider";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyADq7Yy283TsNxxs8x-hXfD1k3lyeJQDZI",
@@ -30,7 +32,7 @@ export const firebaseConfig = {
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage,
+    UsersPage,
     TabsPage,
     LoginPage
   ],
@@ -39,14 +41,15 @@ export const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     IonicStorageModule.forRoot(MyApp),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     AboutPage,
     ContactPage,
-    HomePage,
+    UsersPage,
     TabsPage,
     LoginPage
   ],
@@ -54,7 +57,8 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    UserProvider
   ]
 })
 export class AppModule {}
