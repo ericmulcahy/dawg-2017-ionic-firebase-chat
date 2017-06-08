@@ -19,8 +19,10 @@ export class AccountPage {
   }
 
   signOut() {
-    this.authProvider.signOut();
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot(LoginPage).then(() => {
+
+      this.authProvider.signOut();
+    });
   }
 
   changePicture() {

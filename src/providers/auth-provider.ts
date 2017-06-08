@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 // Do not import from 'firebase' as you'd lose the tree shaking benefits
 import * as firebase from 'firebase/app';
 import {AngularFireDatabase} from "angularfire2/database";
+import {UserProvider} from "./user-provider";
 
 /*
   Generated class for the AuthProvider provider.
@@ -62,7 +63,7 @@ export class AuthProvider {
 
   createUserRecord(email: string, uid: any) {
     let currentUserRef = this.angularFireDatabase.database.ref(`/users/${uid}`);
-    currentUserRef.set({email: email});
+    currentUserRef.set({email: email, uid: uid});
     console.log(currentUserRef);
   }
 

@@ -5,10 +5,17 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>User List</h2>
   <ion-list>
-    <ion-item *ngFor="let user of users | async">
-      Chat with {{user.email}}
+    <ion-item>
+      Signed in as {{signedInUser.email}}
+    </ion-item>
+  </ion-list>
+  <h2>Click a user to start chatting</h2>
+  <ion-list>
+    <!--todo: filter out current user-->
+    <ion-item *ngFor="let user of users | async" (click)="startChat(user)">
+      <p>Email: {{user.email}}</p>
+      <p>uid: {{user.uid}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {AngularFireDatabase} from "angularfire2/database";
+import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database";
 import {AuthProvider} from "./auth-provider";
 import {Camera, CameraOptions} from "@ionic-native/camera";
 
@@ -12,12 +12,17 @@ import {Camera, CameraOptions} from "@ionic-native/camera";
 */
 @Injectable()
 export class UserProvider {
+  userList: FirebaseListObservable<any[]>;
 
   constructor(private angularFireDatabase: AngularFireDatabase, private authProvider: AuthProvider, private camera: Camera) {
   }
 
   getAllUsers() {
-    return this.angularFireDatabase.list('/users');
+    this.userList = this.angularFireDatabase.list('/users');
+
+    this.angularFireDatabase.list('/users').subscribe();
+
+    return this.userList;
   }
 
   changePicture() {

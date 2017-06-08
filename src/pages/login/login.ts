@@ -28,7 +28,6 @@ export class LoginPage {
     });
   }
 
-
   signIn() {
     this.authProvider.signIn(this.loginForm.value).then(loginResult => {
       console.log('successfully signed in. loginResult: ' + loginResult);
@@ -47,7 +46,6 @@ export class LoginPage {
       console.log('error creating account! error: ' + error);
     });
   }
-
 
   navigateToMainPage() {
     this.navCtrl.push(TabsPage);
